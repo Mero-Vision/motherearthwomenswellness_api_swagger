@@ -34,9 +34,11 @@ tags:
   - name: Admin > Faq
   - name: Admin > Gallery
   - name: Website
+  - name: Website > Auth
   - name: Website > Contact Us
   - name: Website > Faq
   - name: Website > Gallery
+  - name: Website > Client
 paths:
   /api/admin/login:
     post:
@@ -362,6 +364,93 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/login:
+    post:
+      tags:
+        - Website > Auth
+      summary: client login
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: hanciephago@gmail.com
+                password:
+                  type: string
+                  example: Password@720
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/mobile-signup:
+    post:
+      tags:
+        - Website > Auth
+      summary: mobile signup
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Hancie Phago
+                mobile_no:
+                  type: integer
+                  example: '9825456556'
+                email:
+                  type: string
+                  example: hanciephago@gmail.com
+                password:
+                  type: string
+                  example: Password@720
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/verify-account:
+    post:
+      tags:
+        - Website > Auth
+      summary: verify mobile otp
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: integer
+                  example: '67380'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/contact-us:
     post:
       tags:
@@ -453,6 +542,59 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/client/user/{id}:
+    get:
+      tags:
+        - Website > Client
+      summary: show authenticated client data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/client/change-password:
+    post:
+      tags:
+        - Website > Client
+      summary: change password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                current_password:
+                  type: string
+                password:
+                  type: string
+                password_confirmation:
+                  type: string
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response
