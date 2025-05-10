@@ -454,6 +454,176 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Gallery",
+					"item": [
+						{
+							"name": "store gallery images",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "gallery_title",
+											"value": "hy",
+											"type": "text"
+										},
+										{
+											"key": "images[]",
+											"type": "file",
+											"src": "/C:/Users/Hanci/Downloads/pexels-pixabay-276374.jpg"
+										},
+										{
+											"key": "images[]",
+											"type": "file",
+											"src": [
+												"/C:/Users/Hanci/Downloads/compressed_44909a2e5cf110ed53a486ffe779c7a8.webp",
+												"/C:/Users/Hanci/Downloads/depositphotos_157113714-stock-photo-happy-african-american-man.jpg"
+											]
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/gallery",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"gallery"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show all gallery images",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/gallery",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"gallery"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show single gallery album",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/gallery/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"gallery",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete gallery images",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/gallery/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"gallery",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -551,6 +721,132 @@
 									"path": [
 										"api",
 										"faq"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Gallery",
+					"item": [
+						{
+							"name": "show all gallery images",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "gallery_title",
+											"value": "hy",
+											"type": "text"
+										},
+										{
+											"key": "images[]",
+											"type": "file",
+											"src": "/C:/Users/Hanci/Downloads/pexels-pixabay-276374.jpg"
+										},
+										{
+											"key": "images[]",
+											"type": "file",
+											"src": [
+												"/C:/Users/Hanci/Downloads/compressed_44909a2e5cf110ed53a486ffe779c7a8.webp",
+												"/C:/Users/Hanci/Downloads/depositphotos_157113714-stock-photo-happy-african-american-man.jpg"
+											]
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/gallery",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"gallery"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show single gallery image",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "gallery_title",
+											"value": "hy",
+											"type": "text"
+										},
+										{
+											"key": "images[]",
+											"type": "file",
+											"src": "/C:/Users/Hanci/Downloads/pexels-pixabay-276374.jpg"
+										},
+										{
+											"key": "images[]",
+											"type": "file",
+											"src": [
+												"/C:/Users/Hanci/Downloads/compressed_44909a2e5cf110ed53a486ffe779c7a8.webp",
+												"/C:/Users/Hanci/Downloads/depositphotos_157113714-stock-photo-happy-african-american-man.jpg"
+											]
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/gallery/{slug}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"gallery",
+										"{slug}"
 									]
 								}
 							},
