@@ -33,12 +33,19 @@ tags:
   - name: Admin > Contact Us
   - name: Admin > Faq
   - name: Admin > Gallery
+  - name: Admin > Blogs
+  - name: Admin > Bookings
+  - name: Admin > Products
   - name: Website
   - name: Website > Auth
   - name: Website > Contact Us
   - name: Website > Faq
   - name: Website > Gallery
   - name: Website > Client
+  - name: Website > Category
+  - name: Website > Blogs
+  - name: Website > Booking
+  - name: Website > Product
 paths:
   /api/admin/login:
     post:
@@ -89,6 +96,24 @@ paths:
                   type: string
                   format: binary
                 fav_icon:
+                  type: string
+                  format: binary
+                email:
+                  type: string
+                  example: hy
+                phone_no:
+                  type: integer
+                  example: '435465'
+                mobile_no:
+                  type: integer
+                  example: '3456546'
+                address:
+                  type: string
+                  example: Dubai
+                about_us:
+                  type: integer
+                  example: '435465'
+                main_banner_image:
                   type: string
                   format: binary
       security:
@@ -364,6 +389,375 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/blogs:
+    post:
+      tags:
+        - Admin > Blogs
+      summary: store blogs
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: trytry
+                description:
+                  type: string
+                  example: retrey
+                blog_image:
+                  type: string
+                  format: binary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Blogs
+      summary: show all blog list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/blogs/{id}:
+    post:
+      tags:
+        - Admin > Blogs
+      summary: update blog
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: trytry
+                description:
+                  type: string
+                  example: retrey
+                blog_image:
+                  type: string
+                  format: binary
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Blogs
+      summary: delete blog
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/blogs/{slug}:
+    get:
+      tags:
+        - Admin > Blogs
+      summary: show single view blog
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/bookings:
+    get:
+      tags:
+        - Admin > Bookings
+      summary: show all bookings
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/bookings/{id}:
+    delete:
+      tags:
+        - Admin > Bookings
+      summary: delete booking
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/products:
+    post:
+      tags:
+        - Admin > Products
+      summary: store product
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Baby Massage
+                category_id:
+                  type: integer
+                  example: '1'
+                price:
+                  type: integer
+                  example: '250'
+                short_description:
+                  type: string
+                  example: >-
+                    Our 5 week Infant Massage programme is facilitated by our
+                    passionate BritishCrae Baby Massage Instructors & Midwives
+                    who have had the pleasure of supporting thousands of
+                    families in our fun and very special baby bonding classes. 
+                description:
+                  type: string
+                  example: >-
+                    Our 5 week Infant Massage programme is facilitated by our
+                    passionate BritishCrae Baby Massage Instructors & Midwives
+                    who have had the pleasure of supporting thousands of
+                    families in our fun and very special baby bonding classes. 
+                is_service:
+                  type: string
+                  example: 'yes'
+                duration:
+                  type: string
+                  example: 5 Weeks
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Products
+      summary: show all products
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/products/{slug}:
+    get:
+      tags:
+        - Admin > Products
+      summary: single product show
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/products/{id}:
+    post:
+      tags:
+        - Admin > Products
+      summary: update product
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Baby Massage
+                category_id:
+                  type: integer
+                  example: '1'
+                price:
+                  type: integer
+                  example: '250'
+                short_description:
+                  type: string
+                  example: >-
+                    Our 5 week Infant Massage programme is facilitated by our
+                    passionate BritishCrae Baby Massage Instructors & Midwives
+                    who have had the pleasure of supporting thousands of
+                    families in our fun and very special baby bonding classes. 
+                description:
+                  type: string
+                  example: >-
+                    Our 5 week Infant Massage programme is facilitated by our
+                    passionate BritishCrae Baby Massage Instructors & Midwives
+                    who have had the pleasure of supporting thousands of
+                    families in our fun and very special baby bonding classes. 
+                is_service:
+                  type: string
+                  example: 'yes'
+                duration:
+                  type: string
+                  example: 5 Weeks
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Admin > Products
+      summary: delete product
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/login:
     post:
       tags:
@@ -408,10 +802,10 @@ paths:
                   example: Hancie Phago
                 mobile_no:
                   type: integer
-                  example: '9825456556'
+                  example: '982545655657'
                 email:
                   type: string
-                  example: hanciephago@gmail.com
+                  example: hanciephago20@gmail.com
                 password:
                   type: string
                   example: Password@720
@@ -439,7 +833,7 @@ paths:
               properties:
                 token:
                   type: integer
-                  example: '67380'
+                  example: '31760'
       parameters:
         - name: Accept
           in: header
@@ -595,6 +989,186 @@ paths:
           schema:
             type: string
           example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/category:
+    get:
+      tags:
+        - Website > Category
+      summary: show all category
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/category/{slug}:
+    get:
+      tags:
+        - Website > Category
+      summary: show single category
+      parameters:
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/blogs:
+    get:
+      tags:
+        - Website > Blogs
+      summary: show all blogs
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/blogs/{slug}:
+    get:
+      tags:
+        - Website > Blogs
+      summary: show single blog
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/bookings:
+    post:
+      tags:
+        - Website > Booking
+      summary: store booking
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: hy
+                email:
+                  type: string
+                  example: hy@gmail.com
+                mobile_no:
+                  type: integer
+                  example: '32435435'
+                date:
+                  type: string
+                  example: '2023-05-30'
+                note:
+                  type: string
+                  example: hy
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/products:
+    get:
+      tags:
+        - Website > Product
+      summary: show all product
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/products/{id}:
+    get:
+      tags:
+        - Website > Product
+      summary: show single product
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
